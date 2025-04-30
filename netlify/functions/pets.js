@@ -12,7 +12,7 @@ const handler = async () => {
   return {
     statusCode: 200,
     headers: {
-      "Content-Type": "appplication/json",
+      "Content-Type": "application/json",
       "Access-Control-Allow-origin": "*",
     },
     body: JSON.stringify(pets),
