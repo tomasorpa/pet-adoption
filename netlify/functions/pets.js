@@ -1,10 +1,9 @@
 const { MongoClient } = require("mongodb");
+const { getDbClient } = require("../../helpers/getDbClient");
 
 const handler = async () => {
-  const client = new MongoClient(process.env.DB_CNN);
-
   try {
-    await client.connect();
+    const client = await getDbClient();
 
     const pets = await client
       .db("petAdoptionCenter")
