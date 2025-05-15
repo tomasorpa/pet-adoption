@@ -2,8 +2,10 @@ const { MongoClient } = require("mongodb");
 const { getDbClient } = require("../../helpers/getDbClient");
 
 const handler = async () => {
+  let client; // ⬅️ Declarado fuera del try
+
   try {
-    const client = await getDbClient();
+    client = await getDbClient();
 
     const pets = await client
       .db("petAdoptionCenter")
@@ -27,7 +29,8 @@ const handler = async () => {
       body: JSON.stringify({ message: "Internal Server Error" }),
     };
   } finally {
-    await client.close();
+    if (client) {
+      await client.close();}
   }
 };
 
