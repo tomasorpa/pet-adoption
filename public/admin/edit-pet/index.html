@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet adoption Center!!!</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <section class="top-section-wrapper admin-layout">
+        <div class="top-section">
+            <a href="/admin" class="small-link">&laquo; Back to Admin Dashboard</a>
+            <h1 class="mt">Edit existing Pet</h1>
+            <form id="edit-pet-form" class="form-is-loading">
+                <input class="form-field mt" autocomplete="" type="text" id="name" placeholder="Name">
+                <input class="form-field"  type="text" id="birthYear" placeholder="Year Born (e.g 2015)"> 
+                <select  class="form-field" id="species">
+                    <option value="">Pet Specie</option>
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                </select>
+                <textarea class="form-field" id="description" placeholder="Description..."></textarea>
+                <button id="submit-btn" class="our-btn">Save changes</button>
+            </form>
+
+            <footer class="site-footer">
+                <button id="logout-btn">Logout</button>
+                <p>&copy; 2023 Fake Adoption Center. All rights reserved.</p>
+            </footer>
+            
+</body>
+<script src="/js/logout.js"></script>
+<script src="/js/clientEditPet.js"></script>
+
+</html>
