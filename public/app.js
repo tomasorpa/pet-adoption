@@ -17,7 +17,9 @@ const petsData = async () => {
   const data = await res.json();
   console.log(data);
   data.forEach((pet) => {
-    const petPhoto = !pet.photo ? "./images/fallback-img.jpg" : pet.photo;
+    const petPhoto = !pet.photo
+      ? "./images/fallback-img.jpg"
+      : `https://res.cloudinary.com/de6w3xtrg/image/upload/${pet.photo}.png`;
     const clone = template.content.cloneNode(true);
 
     clone.querySelector("h3").textContent = pet.name;

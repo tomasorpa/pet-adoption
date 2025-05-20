@@ -4,6 +4,7 @@
     "start": "node netlify/functions/pets.js"
   },
   "dependencies": {
+    "cloudinary": "^2.6.1",
     "cookie": "^1.0.2",
     "dotenv": "^16.5.0",
     "escape-html": "^1.0.3",

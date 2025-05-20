@@ -2,7 +2,13 @@ const sanitize = require("sanitize-html");
 const { getDbClient } = require("../../helpers/getDbClient");
 const isAdmin = require("../../helpers/isAdmin");
 const { ObjectId } = require("mongodb");
-
+const cloudinary = require("cloudinary").v2;
+const cloudinaryConfig = cloudinary.config({
+  cloud_name: "de6w3xtrg",
+  api_key: "369179715574996",
+  api_secret: process.env.CLOUDINARY_SECRET,
+  secure: true,
+});
 const cleanUp = (x) => {
   return sanitize(x, {
     allowedTags: [],
@@ -38,7 +44,18 @@ const handler = async (event) => {
   if (pet.species !== "cat" && pet.species !== "dog") {
     pet.species = "dog";
   }
-
+  const expectedSignature = cloudinary.utils.api_sign_request(
+    {
+      public_id: body.public_id,
+      version: body.version,
+    },
+    cloudinaryConfig.api_secret
+  );
+  console.log(body.public_id);
+  if (expectedSignature === body.signature) {
+    console.log("dasda");
+    pet.photo = body.public_id;
+  }
   if (isAdmin(event)) {
     pet.birthYear = body.birthYear;
 

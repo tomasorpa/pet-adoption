@@ -25,8 +25,13 @@ const editPetForm = document.querySelector("#edit-pet-form");
 
 editPetForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+  if (isFormReady) {
+    return null;
+  }
+
+  isFormReady = true;
   editPetForm.disabled = true;
-   document.querySelector("#edit-pet-form").classList.add("form-is-loading");
+  document.querySelector("#edit-pet-form").classList.add("form-is-loading");
   const pet = {
     id,
     name: document.querySelector("#name").value,
@@ -34,6 +39,17 @@ editPetForm.addEventListener("submit", async (event) => {
     species: document.querySelector("#species").value,
     description: document.querySelector("#description").value,
   };
+  if (cloudinaryObject) {
+    pet.public_id = cloudinaryObject.public_id;
+    pet.version = cloudinaryObject.version;
+    pet.signature = cloudinaryObject.signature;
+    console.log(pet);
+  }
+
+  if (pet.photo) {
+    const photoPreview = document.querySelector("#photo-preview");
+    photoPreview.innerHTML = `<img src="https://res.cloudinary.com/de6w3xtrg/image/upload/w_190,h_190,c_fill/${pet.photo}.png"/>`;
+  }
   console.log(pet);
   const data = await fetch("/.netlify/functions/saveChanges", {
     method: "POST",

@@ -19,13 +19,17 @@
             <h1 class="mt">Edit existing Pet</h1>
             <form id="edit-pet-form" class="form-is-loading">
                 <input class="form-field mt" autocomplete="" type="text" id="name" placeholder="Name">
-                <input class="form-field"  type="text" id="birthYear" placeholder="Year Born (e.g 2015)"> 
-                <select  class="form-field" id="species">
+                <input class="form-field" type="text" id="birthYear" placeholder="Year Born (e.g 2015)">
+                <select class="form-field" id="species">
                     <option value="">Pet Specie</option>
                     <option value="dog">Dog</option>
                     <option value="cat">Cat</option>
                 </select>
                 <textarea class="form-field" id="description" placeholder="Description..."></textarea>
+
+                <input type="file" name="" id="file-field" class="form-field">
+                <div id="photo-preview"></div>
+
                 <button id="submit-btn" class="our-btn">Save changes</button>
             </form>
 
@@ -33,9 +37,11 @@
                 <button id="logout-btn">Logout</button>
                 <p>&copy; 2023 Fake Adoption Center. All rights reserved.</p>
             </footer>
-            
+
 </body>
 <script src="/js/logout.js"></script>
 <script src="/js/clientEditPet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/clientPhotoUpload.js"></script>
 
 </html>
