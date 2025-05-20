@@ -2,24 +2,34 @@ const cookie = require("cookie");
 const isAdmin = require("../../helpers/isAdmin");
 const { getDbClient } = require("../../helpers/getDbClient");
 const escapeHTML = require("escape-html");
+
 const generateHtml = (pets) => {
   let petHtml = `<div class="pet-cards--container mt">`;
+  
   petHtml += pets
-    .map(
-      (pet) => `
-  <div class="pet-card">
-            <div class="card-text">
-              <h3>${escapeHTML(pet.name)} </h3>
-              <p>${escapeHTML(pet.description)} </p>
-              <div class="action-btns">
-  <a href="/admin/edit-pet?id=${pet._id}" class="action-btn">Edit</a>
-  <button onClick="handleDelete('${pet._id}',this)" class="action-btn">Delete</button>
-</div>
-            </div>
-            <img src="/images/fallback-img.jpg" alt="A ${escapeHTML(pet.species)} named ${escapeHTML(pet.name)} " />
+    .map((pet) => {
+      const petPhoto = !pet.photo
+        ? "./images/fallback-img.jpg"
+        : `https://res.cloudinary.com/de6w3xtrg/image/upload/${pet.photo}.png`;
+
+      return `
+      <div class="pet-card">
+        <div class="card-text">
+          <h3>${escapeHTML(pet.name)} </h3>
+          <p>${escapeHTML(pet.description)} </p>
+          <div class="action-btns">
+            <a href="/admin/edit-pet?id=${pet._id}" class="action-btn">Edit</a>
+            <button onClick="handleDelete('${
+              pet._id
+            }',this)" class="action-btn">Delete</button>
           </div>
-    `
-    )
+        </div>
+        <img src="${petPhoto}" alt="A ${escapeHTML(
+        pet.species
+      )} named ${escapeHTML(pet.name)}" />
+      </div>
+    `;
+    })
     .join("");
   petHtml += `</div>`;
   return petHtml;
