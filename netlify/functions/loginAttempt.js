@@ -2,7 +2,7 @@ const cookie = require("cookie");
 
 const handler = async (event) => {
   const { username, password } = JSON.parse(event.body);
-  if (username == "SI" && password == "NO") {
+  if (username == "PetCenter" && password == "Bonnie123") {
     const myCookie = cookie.serialize(
       "petadoption",
       "sisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamanisisamani",
